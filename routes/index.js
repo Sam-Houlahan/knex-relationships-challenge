@@ -77,3 +77,13 @@ router.get('/bloglist', (req, res) => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
+
+router.get('/blogs/:title', (req, res) => {
+  let title = req.params.title
+  title = title.charAt(0).toUpperCase() + title.substr(1) // allows user to enter in lower case blog title
+  db.getBlogs(req.app.get('connection'))
+    .where('posts.title', title)
+    .then(blog => {
+      res.render('individualblog', blog[0])
+    })
+})
