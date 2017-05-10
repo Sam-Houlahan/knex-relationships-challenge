@@ -13,4 +13,20 @@ router.get('/', function (req, res) {
     })
 })
 
+
+router.get('/users/:id', (req,res) =>{
+
+  const id = Number(req.params.id)
+db.userProfiles(req.app.get('connection'))
+.where('users.id', id)
+.then(result => {
+
+    const viewData = result[0]
+
+
+console.log(result)
+  res.render('profiles',viewData)
+})
+
+})
 module.exports = router
