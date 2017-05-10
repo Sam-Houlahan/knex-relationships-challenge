@@ -21,12 +21,29 @@ db.userProfiles(req.app.get('connection'))
 .where('users.id', id)
 .then(result => {
 
-    const viewData = result[0]
-
-
+  const viewData = result[0]
 console.log(result)
-  res.render('profiles',viewData)
+  res.render('profiles', viewData)
 })
-
 })
 module.exports = router
+
+router.get('/new', (req,res) => {
+  res.render('form')
+
+})
+
+router.post('/new', (req,res) =>{
+  const name = req.body.name
+  const email = req.body.email
+  const url = req.body.url
+  db.addUser(req.app.get('connection'),name,email)
+  .then(result => {
+    console.log(Number(result))
+ return db.addUserToProfile(req.app.get('connection'),url,Number(result))
+
+  })
+  .then(() => {
+    res.redirect('/')
+  })
+})
