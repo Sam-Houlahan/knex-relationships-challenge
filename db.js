@@ -5,7 +5,7 @@ module.exports = {
   addUser,
   addUserToProfile,
   addBlog,
-  getBlogs,
+  getBlogs
 
 
 }
@@ -39,8 +39,6 @@ function getBlogs(connection) {
     .select('users.name', 'posts.title', 'posts.content')
 }
 
-// function joinUsersWithBlogs (connection){
-//   return connection('users')
-//   .join('posts','users.id','posts.user_id')
-//   .select('users.name','posts.title','posts.content')
-// }
+function blogPrompt(){
+  const selectedTitle = prompt('Please provide the title of the blog')
+}

@@ -1,6 +1,11 @@
+  <script type="text/javascript" src=../functions.js>
+  </script>
+
 <a href="/new"><button type="button" name="button">Add User</button></a>
 <a href="/blog"><button type="button" name="button">Add Blog</button></a>
 <a href="/bloglist"><button type="button" name="button">View Blogs</button></a>
+<button type="button" onclick="blogPrompt()" name="button">Search Blog</button>
+
     {{#each users}}
       <li><a href ="/users/{{id}}">{{name}}</a> ({{email}})</li>
     {{/each}}

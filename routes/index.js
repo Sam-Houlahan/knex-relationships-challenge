@@ -87,3 +87,12 @@ router.get('/blogs/:title', (req, res) => {
       res.render('individualblog', blog[0])
     })
 })
+
+router.get('/blogsearch/:title', (req, res) => {
+  let title = req.params.title
+  db.getBlogs(req.app.get('connection'))
+    .where('posts.title', 'like', '%'+ title +'%')
+    .then(blogs => {
+      res.render('bloglist', {blogs: blogs})
+    })
+})
